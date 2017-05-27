@@ -27,11 +27,11 @@ class Candidates(db.Model):
 
 	def __init__(self, name, email, age, phone, address, gender):
 		self.name = name
-        self.email = email
-        self.age = age
-        self.phone = phone
-        self.address = address
-        self.gender = gender 
+		self.email = email
+		self.age = age
+		self.phone = phone
+		self.address = address
+		self.gender = gender 
 
 class Company(db.Model):
 	__tablename__ = 'company'
@@ -48,7 +48,7 @@ class Company(db.Model):
 	zip_code = db.Column(db.Integer)
 	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self,name, website, email, mobile, address, city, state, country, zip_code):
+	def __init__(self, name, website, email, mobile, address, city, state, country, zip_code):
 		self.name = name
 		self.website = website
 		self.email = email
@@ -59,14 +59,14 @@ class Company(db.Model):
 		self.country = country
 		self.zip_code = zip_code
 	
-class Vocancy(db.Model):
-	__tablename__ = 'vocancy'
+class Vacancy(db.Model):
+	__tablename__ = 'vacancy'
 
 	id = db.Column(db.BigInteger, primary_key=True)
 	comp_id = db.Column(db.BigInteger, ForeignKey('company.id'))
 	candi_id = db.Column(db.BigInteger, ForeignKey('candidates.id'))
 	post_date = db.Column(db.String(60))
-	expiry_date = db.Columndb(db.String(60))
+	expiry_date = db.Column(db.String(60))
 	sal_min = db.Column(db.Integer)
 	sal_max = db.Column(db.Integer)
 	fullTime_parttime = db.Column(db.String(60))
