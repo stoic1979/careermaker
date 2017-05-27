@@ -87,6 +87,18 @@ class Vacancy(db.Model):
 		self.sal_max = sal_max
 		self.fulltime = fulltime
 
+
+#########################################
+#    TODO
+#########################################
+class JobCategory(db.Model):
+	pass
+
+
+class Skill(db.Model):
+	pass
+
+
 if __name__ == '__main__':
 	try:
 		print ("CREATING ALL TABLES")
