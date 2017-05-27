@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Career Marker</title>
+	</head>
+	<body>
+		<h2>Candidates</h2>
+        <form method="post" action="/save_candidates">
+            <TABLE>
+                <tr>
+                    <th>Candidate Name</th>
+                    <td><input type="text" name="name" placeholder="Enter the Candidate Name"></td>
+                </tr>
+                <tr>
+                    <th>Candidate Email</th>
+                    <td><input type="text" name="email" placeholder="Enter the Candidate Email"></td>
+                </tr>
+                <tr>
+                    <th>Candidate Age</th>
+                    <td><input type="text" name="age" placeholder="Enter the Candidate Age"></td>
+                </tr>
+                <tr>
+                    <th>Candidate Phone No</th>
+                    <td><input type="text" name="phone" placeholder="Enter the Candidate Phone No"></td>
+                </tr>
+                <tr>
+                    <th>Candidate Address</th>
+                    <td><input type="text" name="address" placeholder="Enter the Candidate Address"></td>
+                </tr><h2>Candidates</h2>
+                <tr>
+                	<th>Gender</th>
+					<td>
+						<input type="radio" id="name" name="gender" value="Male">Male
+						<input type="radio" id="name" name="gender" value="Female">Female
+					</td>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+
+
+
+		<!--++++++++++++++++++++++++++++++++++++ Company ++++++++++++++++++++++++++++++++++++++++++++-->
+  
+		<h2>Company</h2>
+        <form method="post" action="/company">
+            <TABLE>
+                <tr>
+                    <th>Company Name</th>
+                    <td><input type="text" name="name" placeholder="Enter the Candidate Name"></td>
+                </tr>
+                <tr>
+                    <th>Company Website</th>
+                    <td><input type="text" name="email" placeholder="Enter the Candidate Email"></td>
+                </tr>
+                <tr>
+                    <th>Company Email</th>
+                    <td><input type="text" name="age" placeholder="Enter the Candidate Age"></td>
+                </tr>
+                <tr>
+                    <th>Company Mobile No</th>
+                    <td><input type="text" name="phone" placeholder="Enter the Candidate Phone No"></td>
+                </tr>
+                <tr>
+                    <th>Company Address</th>
+                    <td><input type="text" name="address" placeholder="Enter the Candidate Address"></td>
+                </tr>
+               <tr>
+                    <th>City</th>
+                    <td><input type="text" name="city" placeholder="Enter the Candidate Address"></td>
+                </tr>
+                <tr>
+                    <th>state</th>
+                    <td><input type="text" name="state" placeholder="Enter the Candidate Address"></td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td><input type="text" name="country" placeholder="Enter the Candidate Address"></td>
+                </tr>
+                <tr>
+                    <th>Zip Code</th>
+                    <td><input type="text" name="zip_code" placeholder="Enter the Candidate Address"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+        <!--++++++++++++++++++++++++++++++++++++ Company ++++++++++++++++++++++++++++++++++++++++++++-->
+  
+        <h2>Vocancy</h2>
+        <form method="post" action="/vocancy">
+            <TABLE>
+                <tr>
+                    <th>Company Id</th>
+                    <td><input type="text" name="comp_id" placeholder="Enter the Candidate Name"></td>
+                </tr>
+                <tr>
+                    <th>Candidate Id</th>
+                    <td><input type="text" name="candi_id" placeholder="Enter the Candidate Email"></td>
+                </tr>
+                <tr>
+                    <th>Post_date</th>
+                    <td><input type="text" name="post_date" placeholder="Enter the Candidate Age"></td>
+                </tr>
+                <tr>
+                    <th>Expiry Date</th>
+                    <td><input type="text" name="expiry_date" placeholder="Enter the Candidate Phone No"></td>
+                </tr>
+                <tr>
+                    <th>Salary Min</th>
+                    <td><input type="text" name="sal_min" placeholder="Enter the Candidate Address"></td>
+                </tr>
+               <tr>
+                    <th>Salary Max</th>
+                    <td><input type="text" name="sal_max" placeholder="Enter the Candidate Address"></td>
+                </tr>
+                <tr>
+                    <th>Fulltime/parttime</th>
+                    <td><input type="text" name="full_part" placeholder="Enter the Candidate Address"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+	</body>
+</html>
