@@ -30,7 +30,7 @@ def save_candidate():
 		phone = request.form['phone']
 		address = request.form['address']
 		gender = request.form['gender']
-		candidate = Candidate(name, email, password, age, phone, address, gender)
+		candidate = Candidate(name, email, pswd, age, phone, address, gender)
 		db.session.add(candidate)
 		db.session.commit()
 	except Exception as exp:

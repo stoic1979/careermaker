@@ -21,15 +21,15 @@ class Candidate(db.Model):
 	email = db.Column(db.String(60), unique=True)
 	pswd = db.Column(db.String(16))
 	age = db.Column(db.Integer)
-	phone = db.Column(db.Integer, unique=True)
+	phone = db.Column(db.String(16))
 	address = db.Column(db.String(60))
 	gender = db.Column(db.String(60))
 	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, name, email, password, age, phone, address, gender):
+	def __init__(self, name, email, pswd, age, phone, address, gender):
 		self.name = name
 		self.email = email
-		self.password = password
+		self.pswd = pswd
 		self.age = age
 		self.phone = phone
 		self.address = address
@@ -52,11 +52,11 @@ class Company(db.Model):
 	pin = db.Column(db.Integer)
 	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, name, website, email, password, mobile, telno, address, city, state, country, pin):
+	def __init__(self, name, website, email, pswd, mobile, telno, address, city, state, country, pin):
 		self.name = name
 		self.website = website
 		self.email = email
-		self.password = password
+		self.pswd = pswd
 		self.mobile = mobile
 		self.telno = telno
 		self.address = address
@@ -91,12 +91,12 @@ class Vacancy(db.Model):
 #########################################
 #    TODO
 #########################################
-class JobCategory(db.Model):
-	pass
+# class JobCategory(db.Model):
+# 	pass
 
 
-class Skill(db.Model):
-	pass
+# class Skill(db.Model):
+# 	pass
 
 
 if __name__ == '__main__':
