@@ -13,21 +13,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123@localhost/careermaker'
 db = SQLAlchemy(app)
 
 
-class Candidates(db.Model):
-	__tablename__ = 'candidates'
+class Candidate(db.Model):
+	__tablename__ = 'candidate'
 
 	id = db.Column(db.BigInteger, primary_key=True)
 	name = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
+	password = db.Column(db.String(16))
 	age = db.Column(db.Integer)
 	phone = db.Column(db.Integer, unique=True)
 	address = db.Column(db.String(60))
 	gender = db.Column(db.String(60))
 	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, name, email, age, phone, address, gender):
+	def __init__(self, name, email, password, age, phone, address, gender):
 		self.name = name
 		self.email = email
+		self.password = password
 		self.age = age
 		self.phone = phone
 		self.address = address
@@ -40,49 +42,54 @@ class Company(db.Model):
 	name = db.Column(db.String(60))
 	website = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
-	mobile = db.Column(db.Integer, unique=True)
+	password = db.Column(db.String(16))
+	mobile = db.Column(db.String(16), unique=True)
+	telno = db.Column(db.String(16), unique=True)  # landline No
 	address = db.Column(db.String(60))
 	city = db.Column(db.String(60))
 	state = db.Column(db.String(60))
 	country = db.Column(db.String(60))
-	zip_code = db.Column(db.Integer)
+	pin = db.Column(db.Integer)
 	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, name, website, email, mobile, address, city, state, country, zip_code):
+	def __init__(self, name, website, email, password, mobile, telno, address, city, state, country, pin):
 		self.name = name
 		self.website = website
 		self.email = email
+		self.password = password
 		self.mobile = mobile
+		self.telno = telno
 		self.address = address
 		self.city = city
 		self.state = state
 		self.country = country
-		self.zip_code = zip_code
+		self.pin = pin
 	
 class Vacancy(db.Model):
 	__tablename__ = 'vacancy'
 
 	id = db.Column(db.BigInteger, primary_key=True)
 	comp_id = db.Column(db.BigInteger, ForeignKey('company.id'))
-	candi_id = db.Column(db.BigInteger, ForeignKey('candidates.id'))
+	cand_id = db.Column(db.BigInteger, ForeignKey('candidate.id'))
 	post_date = db.Column(db.String(60))
 	expiry_date = db.Column(db.String(60))
 	sal_min = db.Column(db.Integer)
 	sal_max = db.Column(db.Integer)
-	fullTime_parttime = db.Column(db.String(60))
+	fulltime = db.Column(db.Boolean, default=True)
 	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, comp_id, candi_id, post_date, expiry_date, sal_min, sal_max, fullTime_parttime):
+	def __init__(self, comp_id, cand_id, post_date, expiry_date, sal_min, sal_max, fulltime):
 		self.comp_id = comp_id
-		self.candi_id = candi_id
+		self.cand_id = cand_id
 		self.post_date = post_date
 		self.expiry_date = expiry_date
 		self.sal_min = sal_min
 		self.sal_max = sal_max
-		self.fullTime_parttime = fullTime_parttime
+		self.fulltime = fulltime
 
-try:
-    print ("================================= create_all ===================================")
-    db.create_all()
-except:
-    pass
+if __name__ == '__main__':
+	try:
+		print ("CREATING ALL TABLES")
+		db.create_all()
+	except Exception as exp:
+		print "create_all() :: Got Excetion: %s" % exp
