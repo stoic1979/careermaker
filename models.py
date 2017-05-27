@@ -19,7 +19,7 @@ class Candidate(db.Model):
 	id = db.Column(db.BigInteger, primary_key=True)
 	name = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
-	password = db.Column(db.String(16))
+	pswd = db.Column(db.String(16))
 	age = db.Column(db.Integer)
 	phone = db.Column(db.Integer, unique=True)
 	address = db.Column(db.String(60))
@@ -42,7 +42,7 @@ class Company(db.Model):
 	name = db.Column(db.String(60))
 	website = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
-	password = db.Column(db.String(16))
+	pswd = db.Column(db.String(16))
 	mobile = db.Column(db.String(16), unique=True)
 	telno = db.Column(db.String(16), unique=True)  # landline No
 	address = db.Column(db.String(60))

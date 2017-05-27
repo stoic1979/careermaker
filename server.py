@@ -25,7 +25,7 @@ def save_candidate():
 		print "Candidate Data(): :", request.form
 		name = request.form['name']
 		email = request.form['email']
-		password = request.form['pass']
+		pswd = request.form['pswd']
 		age = request.form['age']
 		phone = request.form['phone']
 		address = request.form['address']
