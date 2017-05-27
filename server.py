@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request
+from models import Candidate, Company, Vacancy, db, app
+from flask_restful import Resource, Api, reqparse
+#from utils import *
 import traceback
 import os
 import json
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 
 @app.route("/")
@@ -16,9 +19,24 @@ def candidate_form():
 	templateData = {'title' : 'Home Page'}
 	return render_template("api_demo.html", **templateData )
 
-@app.route("/save_candidates", methods=['POST'])
-def home():
-	return "hiiiiii"
+@app.route("/save_candidate", methods=['POST'])
+def save_candidate():
+	try:
+		print "Candidate Data(): :", request.form
+		name = request.form['name']
+		email = request.form['email']
+		password = request.form['pass']
+		age = request.form['age']
+		phone = request.form['phone']
+		address = request.form['address']
+		gender = request.form['gender']
+		candidate = Candidate(name, email, password, age, phone, address, gender)
+		db.session.add(candidate)
+		db.session.commit()
+	except Exception as exp:
+		print "save_candidate(): : Got Exception: %sd" % exp
+		print(traceback.format_exc())
+	return "Candidate Data Saved"
 
 
 
