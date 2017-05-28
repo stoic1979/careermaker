@@ -48,7 +48,7 @@
 		<!--++++++++++++++++++++++++++++++++++++ Company ++++++++++++++++++++++++++++++++++++++++++++-->
   
 		<h2>Company</h2>
-        <form method="post" action="/company">
+        <form method="post" action="/save_company">
             <TABLE>
                 <tr>
                     <th>Company Name</th>
@@ -56,15 +56,23 @@
                 </tr>
                 <tr>
                     <th>Company Website</th>
-                    <td><input type="text" name="email" placeholder="Enter the Candidate Email"></td>
+                    <td><input type="text" name="website" placeholder="Enter the Candidate Email"></td>
                 </tr>
                 <tr>
                     <th>Company Email</th>
-                    <td><input type="text" name="age" placeholder="Enter the Candidate Age"></td>
+                    <td><input type="text" name="email" placeholder="Enter the Candidate Age"></td>
+                </tr>
+                <tr>
+                    <th>Company Password</th>
+                    <td><input type="Password" name="pswd" placeholder="Enter the Candidate Email"></td>
                 </tr>
                 <tr>
                     <th>Company Mobile No</th>
-                    <td><input type="text" name="phone" placeholder="Enter the Candidate Phone No"></td>
+                    <td><input type="text" name="mobile" placeholder="Enter the Candidate Phone No"></td>
+                </tr>
+                <tr>
+                    <th>Company Telephone No</th>
+                    <td><input type="text" name="telno" placeholder="Enter the Candidate Phone No"></td>
                 </tr>
                 <tr>
                     <th>Company Address</th>
@@ -84,7 +92,7 @@
                 </tr>
                 <tr>
                     <th>Zip Code</th>
-                    <td><input type="text" name="zip_code" placeholder="Enter the Candidate Address"></td>
+                    <td><input type="text" name="pin" placeholder="Enter the Candidate Address"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="save">
@@ -94,7 +102,7 @@
         <!--++++++++++++++++++++++++++++++++++++ Company ++++++++++++++++++++++++++++++++++++++++++++-->
   
         <h2>Vocancy</h2>
-        <form method="post" action="/vocancy">
+        <form method="post" action="/save_vacancy">
             <TABLE>
                 <tr>
                     <th>Company Id</th>
@@ -102,7 +110,7 @@
                 </tr>
                 <tr>
                     <th>Candidate Id</th>
-                    <td><input type="text" name="candi_id" placeholder="Enter the Candidate Email"></td>
+                    <td><input type="text" name="cand_id" placeholder="Enter the Candidate Email"></td>
                 </tr>
                 <tr>
                     <th>Post_date</th>
@@ -122,12 +130,65 @@
                 </tr>
                 <tr>
                     <th>Fulltime/parttime</th>
-                    <td><input type="text" name="full_part" placeholder="Enter the Candidate Address"></td>
+                    <td><input type="text" name="fulltime" placeholder="Enter the Candidate Address"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="save">
                 </tr>
             </TABLE>
         </form>
-	</body>
+
+    <!--++++++++++++++++++++++++++++++++++++ JobCategory ++++++++++++++++++++++++++++++++++++++++++++-->
+
+
+        <h2>Job Category</h2>
+        <form method="post" action="/save_JobCategory">
+            <TABLE>
+                <tr>
+                    <th>Job Title</th>
+                    <td><input type="text" name="title" placeholder="Enter the Job Title"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+
+
+    <!--++++++++++++++++++++++++++++++++++++ Skill ++++++++++++++++++++++++++++++++++++++++++++-->
+	
+        <h2>Skill</h2>
+        <form method="post" action="/save_skill">
+            <TABLE>
+                <tr>
+                    <th>Job Category Id</th>
+                    <td><input type="text" name="cat_id" placeholder="Enter the Job Category Id"></td>
+                </tr>
+                <tr>
+                    <th>Skill Title</th>
+                    <td><input type="text" name="title" placeholder="Enter the Job Title"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+
+        <!--++++++++++++++++++++++++++++++++++++ Search ++++++++++++++++++++++++++++++++++++++++++++-->
+    
+
+        <h2>Search</h2>
+        <form method="post" action="/search">
+            <TABLE>
+                <tr>
+                    <th>Job Search</th>
+                    <td><input type="text" name="search" placeholder="job Search"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+
+    </body>
 </html>
