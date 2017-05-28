@@ -24,7 +24,7 @@ class Candidate(db.Model):
 	phone = db.Column(db.String(16))
 	address = db.Column(db.String(60))
 	gender = db.Column(db.String(60))
-	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
+	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
 	def __init__(self, name, email, pswd, age, phone, address, gender):
 		self.name = name
@@ -50,7 +50,7 @@ class Company(db.Model):
 	state = db.Column(db.String(60))
 	country = db.Column(db.String(60))
 	pin = db.Column(db.Integer)
-	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
+	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
 	def __init__(self, name, website, email, pswd, mobile, telno, address, city, state, country, pin):
 		self.name = name
@@ -76,7 +76,7 @@ class Vacancy(db.Model):
 	sal_min = db.Column(db.Integer)
 	sal_max = db.Column(db.Integer)
 	fulltime = db.Column(db.Boolean, default=True)
-	ts = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
+	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
 	def __init__(self, comp_id, cand_id, post_date, expiry_date, sal_min, sal_max, fulltime):
 		self.comp_id = comp_id
@@ -88,15 +88,28 @@ class Vacancy(db.Model):
 		self.fulltime = fulltime
 
 
-#########################################
-#    TODO
-#########################################
-# class JobCategory(db.Model):
-# 	pass
+class JobCategory(db.Model):
+	__tablename__ = 'jbcategory'
+
+ 	id = db.Column(db.BigInteger, primary_key=True)
+ 	title = db.Column(db.String(120))
+ 	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
+
+ 	def __init__(self, title):
+ 		self.title = title
 
 
-# class Skill(db.Model):
-# 	pass
+class Skill(db.Model):
+ 	__tablename__ = 'skill'
+ 	
+ 	id = db.Column(db.BigInteger, primary_key=True)
+ 	category = db.Column(db.BigInteger, ForeignKey('jbcategory.id'))
+ 	title = db.Column(db.String(120))
+ 	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
+	
+	def __init__(self, category, title):
+		self.category = category
+		self.title = title
 
 
 if __name__ == '__main__':
