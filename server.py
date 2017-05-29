@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from models import Candidate, Company, Vacancy, JobCategory, Skill, db, app
 from flask_restful import Resource, Api, reqparse
 #from utils import *
-import hashlib
+import md5
 import traceback
 import os
 import json
@@ -33,8 +33,10 @@ def save_candidate():
 		phone = request.form['phone']
 		address = request.form['address']
 		gender = request.form['gender']
-		#encodepassword = hashlib.md5(pswd.encode())
-		candidate = Candidate(name, email, pswd, age, phone, address, gender)
+		encodepassword = md5.new(pswd).hexdigest()
+		
+		# save candidate in db
+		candidate = Candidate(name, email, encodepassword, age, phone, address, gender)
 		db.session.add(candidate)
 		db.session.commit()
 	except Exception as exp:
@@ -47,7 +49,6 @@ def save_candidate():
 @app.route("/save_company", methods=['POST'])
 def save_company():
 	try:
-		print "save_company(): : %s", request.form
 		name = request.form['name']
 		website = request.form['website']
 		email = request.form['email']
@@ -59,8 +60,10 @@ def save_company():
 		state = request.form['state']
 		country = request.form['country']
 		pin = request.form['pin']
-		#encodepassword = hashlib.md5(pswd.encode())
-		company = Company(name, website, email, pswd, mobile, telno, address, city, state, country, pin)
+		encodepswd = md5.new(pswd).hexdigest()
+		
+		# saving company in db
+		company = Company(name, website, email, encodepswd, mobile, telno, address, city, state, country, pin)
 		db.session.add(company)
 		db.session.commit()
 	except Exception as exp:
@@ -74,8 +77,6 @@ def save_company():
 @app.route("/save_vacancy", methods=['POST'])
 def save_vacancy():
 	try:
-		print "save_vacancy() :: %s", request.form
-
 		comp_id = request.form['comp_id']
 		cand_id = request.form['cand_id']
 		post_date = request.form['post_date']
@@ -96,7 +97,6 @@ def save_vacancy():
 @app.route("/save_JobCategory", methods=['POST'])
 def save_JobCategory():
 	try:
-		print "save_JobCategory() :: %s", request.form
 		title = request.form['title']
 
 		# savin Job Category in db
@@ -112,7 +112,6 @@ def save_JobCategory():
 @app.route("/save_skill", methods=['POST'])
 def save_skill():
 	try:
-		print "save_skill() :: %s", request.form
 		cat_id = request.form['cat_id']
 		title = request.form['title']
 

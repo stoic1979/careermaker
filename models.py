@@ -19,7 +19,7 @@ class Candidate(db.Model):
 	id = db.Column(db.BigInteger, primary_key=True)
 	name = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
-	pswd = db.Column(db.String(16))
+	pswd = db.Column(db.String(60))
 	age = db.Column(db.Integer)
 	phone = db.Column(db.String(16))
 	address = db.Column(db.String(60))
@@ -42,7 +42,7 @@ class Company(db.Model):
 	name = db.Column(db.String(60))
 	website = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
-	pswd = db.Column(db.String(16))
+	pswd = db.Column(db.String(60))
 	mobile = db.Column(db.String(16), unique=True)
 	telno = db.Column(db.String(16), unique=True)  # landline No
 	address = db.Column(db.String(60))
@@ -89,7 +89,7 @@ class Vacancy(db.Model):
 
 
 class JobCategory(db.Model):
-	__tablename__ = 'jbcategory'
+	__tablename__ = 'jobcategory'
 
  	id = db.Column(db.BigInteger, primary_key=True)
  	title = db.Column(db.String(120))
@@ -103,7 +103,7 @@ class Skill(db.Model):
  	__tablename__ = 'skill'
  	
  	id = db.Column(db.BigInteger, primary_key=True)
- 	category = db.Column(db.BigInteger, ForeignKey('jbcategory.id'))
+ 	category = db.Column(db.BigInteger, ForeignKey('jobcategory.id'))
  	title = db.Column(db.String(120))
  	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 	
