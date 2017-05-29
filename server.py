@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request
 from models import Candidate, Company, Vacancy, JobCategory, Skill, db, app
-from flask_restful import Resource, Api, reqparse
-#from utils import *
 import md5
 import traceback
 import os
 import json
-
-# app = Flask(__name__)
 
 
 @app.route("/")
