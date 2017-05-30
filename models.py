@@ -113,6 +113,9 @@ class JobCategory(db.Model):
                 if created_at:
                     self.created_at = created_at
 
+        def __str__(self):
+            return self.title
+
 
 class Skill(db.Model):
  	__tablename__ = 'skill'

@@ -8,12 +8,18 @@ import json
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+class ChildView(ModelView):
+    column_display_pk = True
+    column_hide_backrefs = False
+    column_list = ('category', 'title', 'created_at')
+
 admin = Admin(app, name='CareerMaker Admin', template_mode='bootstrap3')
 admin.add_view(ModelView(Candidate, db.session))
 admin.add_view(ModelView(Company, db.session))
 admin.add_view(ModelView(Vacancy, db.session))
 admin.add_view(ModelView(JobCategory, db.session))
-admin.add_view(ModelView(Skill, db.session))
+#admin.add_view(ModelView(Skill, db.session))
+admin.add_view(ChildView(Skill, db.session))
 
 
 @app.route("/")
