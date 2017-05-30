@@ -95,8 +95,10 @@ class JobCategory(db.Model):
  	title = db.Column(db.String(120))
  	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
- 	def __init__(self, title):
+ 	def __init__(self, title, created_at=None):
  		self.title = title
+                if created_at:
+                    self.created_at = created_at
 
 
 class Skill(db.Model):
