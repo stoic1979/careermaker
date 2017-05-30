@@ -5,6 +5,10 @@ import traceback
 import os
 import json
 
+from flask_admin import Admin
+
+admin = Admin(app, name='CareerMaker Admin', template_mode='bootstrap3')
+
 
 @app.route("/")
 def index():
