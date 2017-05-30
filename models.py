@@ -10,6 +10,13 @@ from sqlalchemy import ForeignKey
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///boatdb.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123@localhost/careermaker'
+
+# set as part of the config
+SECRET_KEY = 'many random bytes'
+
+# or set directly on the app
+app.secret_key = SECRET_KEY
+
 db = SQLAlchemy(app)
 
 
@@ -95,7 +102,13 @@ class JobCategory(db.Model):
  	title = db.Column(db.String(120))
  	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
- 	def __init__(self, title, created_at=None):
+        #########################################################
+        #                                                       #
+        # Flask admin needs a model constructor with no params, #
+        # So using default params here to fix error             #
+        #                                                       #
+        #########################################################
+ 	def __init__(self, title="", created_at=None):
  		self.title = title
                 if created_at:
                     self.created_at = created_at
