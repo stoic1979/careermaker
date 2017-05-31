@@ -8,6 +8,13 @@ import json
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+# Setup login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+
 class ChildView(ModelView):
     column_display_pk = True
     column_hide_backrefs = False
@@ -145,6 +152,22 @@ def save_skill():
 			print "search() :: Got Exception: %s" % exp
 			print (traceback.format_exc())
 		return "Job Search"
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == "GET":
+        print "login GET"
+	templateData = {'title' : 'Login To Career Maker'}
+	return render_template("login.html", **templateData )
+    else:
+        print "login POST"
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
 
 
 
