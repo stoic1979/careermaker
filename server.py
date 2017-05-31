@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from models import User, Candidate, Company, Vacancy, JobCategory, Skill, db, app
 import md5
 import traceback
@@ -31,9 +31,14 @@ admin.add_view(ModelView(User, db.session))
 
 
 @app.route("/")
+@login_required
 def index():
 	templateData = {'title' : 'Home Page'}
 	return render_template("index.html", **templateData )
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login')
 
 @app.route("/api_demo")
 def candidate_form():
