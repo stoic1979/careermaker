@@ -7,6 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy import ForeignKey
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///boatdb.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123@localhost/careermaker'
@@ -18,6 +20,11 @@ SECRET_KEY = 'many random bytes'
 app.secret_key = SECRET_KEY
 
 db = SQLAlchemy(app)
+
+# UserMixin provides features for handling login etc
+class User(UserMixin, db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(60), unique=True)
 
 
 class Candidate(db.Model):
