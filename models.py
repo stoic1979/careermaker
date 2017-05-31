@@ -25,6 +25,7 @@ db = SQLAlchemy(app)
 class User(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(60), unique=True)
+	pswd = db.Column(db.String(60))
 
 
 class Candidate(db.Model):

@@ -20,6 +20,7 @@ admin.add_view(ModelView(Vacancy, db.session))
 admin.add_view(ModelView(JobCategory, db.session))
 #admin.add_view(ModelView(Skill, db.session))
 admin.add_view(ChildView(Skill, db.session))
+admin.add_view(ModelView(User, db.session))
 
 
 @app.route("/")
