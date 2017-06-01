@@ -4,9 +4,13 @@
 		<title>Career Marker</title>
 	</head>
 	<body>
-		<h2>Candidates</h2>
+		<h2>Candidate</h2>
         <form method="post" action="/save_candidate">
             <TABLE>
+                <tr>
+                    <th>User Id</th>
+                    <td><input type="text" name="user_id" placeholder="Enter User Id"></td>
+                </tr>
                 <tr>
                     <th>Candidate Name</th>
                     <td><input type="text" name="name" placeholder="Enter the Candidate Name"></td>
@@ -50,6 +54,10 @@
 		<h2>Company</h2>
         <form method="post" action="/save_company">
             <TABLE>
+                <tr>
+                    <th>User Id</th>
+                    <td><input type="text" name="user_id" placeholder="Enter User Id"></td>
+                </tr>
                 <tr>
                     <th>Company Name</th>
                     <td><input type="text" name="name" placeholder="Enter the Candidate Name"></td>
@@ -187,6 +195,24 @@
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+
+    <!--++++++++++++++++++++++++++++++++++++ User ++++++++++++++++++++++++++++++++++++++++++++-->
+        <h2>User Register</h2>
+        <form method="post" action="/user_register">
+            <TABLE>
+                <tr>
+                    <th>User Name</th>
+                    <td><input type="text" name="username" placeholder="Enter the Job Title"></td>
+                </tr>
+                <tr>
+                    <th>User Password</th>
+                    <td><input type="text" name="pswd" placeholder="Enter the Job Title"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Login">
                 </tr>
             </TABLE>
         </form>

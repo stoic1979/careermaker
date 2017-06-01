@@ -24,15 +24,22 @@ db = SQLAlchemy(app)
 
 # UserMixin provides features for handling login etc
 class User(UserMixin, db.Model):
+	__tablename__ = 'user'
+	
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(60), unique=True)
 	pswd = db.Column(db.String(60))
+
+	def __init__(self, username, pswd):
+		self.username = username
+		self.pswd = pswd
 
 
 class Candidate(db.Model):
 	__tablename__ = 'candidate'
 
 	id = db.Column(db.BigInteger, primary_key=True)
+	user = db.Column(db.Integer, ForeignKey('user.id'))
 	name = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
 	pswd = db.Column(db.String(60))
@@ -42,7 +49,8 @@ class Candidate(db.Model):
 	gender = db.Column(db.String(60))
 	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, name, email, pswd, age, phone, address, gender):
+	def __init__(self, user, name, email, pswd, age, phone, address, gender):
+		self.user = user
 		self.name = name
 		self.email = email
 		self.pswd = pswd
@@ -55,6 +63,7 @@ class Company(db.Model):
 	__tablename__ = 'company'
 	
 	id = db.Column(db.BigInteger, primary_key=True)
+	user = db.Column(db.Integer, ForeignKey('user.id'))
 	name = db.Column(db.String(60))
 	website = db.Column(db.String(60))
 	email = db.Column(db.String(60), unique=True)
@@ -68,7 +77,8 @@ class Company(db.Model):
 	pin = db.Column(db.Integer)
 	created_at = db.Column(db.TIMESTAMP, default=datetime.utcnow, nullable=False)
 
-	def __init__(self, name, website, email, pswd, mobile, telno, address, city, state, country, pin):
+	def __init__(self, user, name, website, email, pswd, mobile, telno, address, city, state, country, pin):
+		self.user = user
 		self.name = name
 		self.website = website
 		self.email = email

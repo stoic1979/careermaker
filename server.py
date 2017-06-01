@@ -51,6 +51,7 @@ def candidate_form():
 def save_candidate():
 	try:
 		print "Candidate Data(): :", request.form
+		user_id = request.form['user_id']
 		name = request.form['name']
 		email = request.form['email']
 		pswd = request.form['pswd']
@@ -61,7 +62,7 @@ def save_candidate():
 		encodepassword = md5.new(pswd).hexdigest()
 		
 		# save candidate in db
-		candidate = Candidate(name, email, encodepassword, age, phone, address, gender)
+		candidate = Candidate(user_id, name, email, encodepassword, age, phone, address, gender)
 		db.session.add(candidate)
 		db.session.commit()
 	except Exception as exp:
@@ -74,6 +75,7 @@ def save_candidate():
 @app.route("/save_company", methods=['POST'])
 def save_company():
 	try:
+		user_id = request.form['user_id']
 		name = request.form['name']
 		website = request.form['website']
 		email = request.form['email']
@@ -88,7 +90,7 @@ def save_company():
 		encodepswd = md5.new(pswd).hexdigest()
 		
 		# saving company in db
-		company = Company(name, website, email, encodepswd, mobile, telno, address, city, state, country, pin)
+		company = Company(user_id, name, website, email, encodepswd, mobile, telno, address, city, state, country, pin)
 		db.session.add(company)
 		db.session.commit()
 	except Exception as exp:
@@ -158,14 +160,43 @@ def save_skill():
 			print (traceback.format_exc())
 		return "Job Search"
 
+@app.route("/user_register", methods=['POST'])
+def user_register():
+	try:
+		print "user_register() :: ", request.form
+		username = request.form['username']
+		pswd = request.form['pswd']
+		encodepswd = md5.new(pswd).hexdigest()
+
+		user = User(username, encodepswd)
+		db.session.add(user)
+		db.session.commit()
+	except Exception as exp:
+		print "user_register() :: Got Exception: %s" %exp
+		print (traceback.format_exc())
+	return "user Register Successfully"
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == "GET":
         print "login GET"
 	templateData = {'title' : 'Login To Career Maker'}
-	return render_template("login.html", **templateData )
+	return render_template("test.html", **templateData )
     else:
-        print "login POST"
+        username = request.form['username']
+        pswd = request.form['pswd']
+        encodepswd = md5.new(pswd).hexdigest()
+        
+        user = User.query.filter_by(username=username).filter_by(pswd=encodepswd).first()
+        if not user:
+        	print "The username and Password is invalid"
+        	return "Invalid Username and Password"
+        else:
+        	print "login is successfull"
+        	templateData = {'title' : 'Home Page'}
+        	return render_template("index.html", **templateData )
+
 
 
 @app.route("/logout")
