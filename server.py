@@ -50,7 +50,7 @@ def candidate_form():
 @app.route("/save_candidate", methods=['POST'])
 def save_candidate():
 	try:
-		print "Candidate Data(): :", request.form
+		print "save_candidate(): :", request.form
 		user_id = request.form['user_id']
 		name = request.form['name']
 		email = request.form['email']
@@ -75,6 +75,7 @@ def save_candidate():
 @app.route("/save_company", methods=['POST'])
 def save_company():
 	try:
+		print "save_company() :: ",request.form
 		user_id = request.form['user_id']
 		name = request.form['name']
 		website = request.form['website']
@@ -100,7 +101,7 @@ def save_company():
 
 
 
-
+index
 @app.route("/save_vacancy", methods=['POST'])
 def save_vacancy():
 	try:
@@ -124,7 +125,7 @@ def save_vacancy():
 @app.route("/save_JobCategory", methods=['POST'])
 def save_JobCategory():
 	try:
-		title = request.form['title']
+		title = request.form['indextitle']
 
 		# savin Job Category in db
 		jbcategory = JobCategory(title)
@@ -182,7 +183,7 @@ def login():
     if request.method == "GET":
         print "login GET"
 	templateData = {'title' : 'Login To Career Maker'}
-	return render_template("test.html", **templateData )
+	return render_template("index.html", **templateData )
     else:
         username = request.form['username']
         pswd = request.form['pswd']
@@ -212,6 +213,7 @@ def logout():
 #							Main Server							#
 #																#
 #################################################################
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	app.run(host='0.0.0.0', port=port, debug=True, threaded=True)
