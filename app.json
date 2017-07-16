@@ -1,0 +1,13 @@
+{
+  "name": "careermaker Heroku Login App",
+  "description": "caeermaker Heroku Login App",
+  "keywords": [
+    "careermaker",
+    "python",
+    "sample"
+  ],
+  "repository": "https://github.com/stoic1979/careermaker.git",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}

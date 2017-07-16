@@ -7,14 +7,16 @@ from config import *
 import traceback
 import json
 
+
 class Mdb:
 
-    def __init__(self):
-        conn_str = "mongodb://%s:%s@%s:%d/%s" \
-                   % (DB_USER, DB_PASS,
-                      DB_HOST, DB_PORT, AUTH_DB_NAME)
+    def  __init__(self):
+        # conn_str = "mongodb://%s:%s@%s:%d/%s" \
+        #          % (DB_USER, DB_PASS,
+        #           DB_HOST, DB_PORT, AUTH_DB_NAME)
+        conn_str = 'mongodb://cmuser:cmpass@ds135689.mlab.com:35689/careermaker'
         client = MongoClient(conn_str)
-        self.db = client[DB_NAME]
+        self.db = client['careermaker']
 
         print "[Mdb] connected to database :: ", self.db
 
@@ -26,9 +28,11 @@ class Mdb:
                 'password': password
             }
             self.db.user.insert(rec)
+            return True, "Success"
         except Exception as exp:
             print 'add_user() :: Got exception: %s' % exp
             print(traceback.format_exc())
+            return False, "Exception: %s" % exp
 
     def user_exist(self, email, password):
         """
@@ -95,7 +99,7 @@ if __name__ == "__main__":
     # quick test connecting to localdb
     mdb = Mdb('127.0.0.1', 27017, 'admin', 'carrermaker', 'admin', '123')
     # mdb.add_vacancy('weaveBytes', 'kharar', '10000', 'its python job')
-    mdb.retrieve_data('LuminoGuru Pvt. Ltd.')
+    # mdb.retrieve_data('LuminoGuru Pvt. Ltd.')
 
 
     # LuminoGuru Pvt. Ltd.
