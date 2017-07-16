@@ -20,7 +20,6 @@ itsdangerous==0.24
 Jinja2==2.9.6
 jwt==0.5.2
 MarkupSafe==1.0
-MySQL-python==1.2.5
 packaging==16.8
 pyasn1==0.2.3
 pycparser==2.18
@@ -33,7 +32,6 @@ requests==2.17.3
 requirements-txt==0.1.1
 selenium==3.4.3
 six==1.10.0
-SQLAlchemy==1.1.10
 typing==3.5.3.0
 urllib3==1.21.1
 Werkzeug==0.12.2
