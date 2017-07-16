@@ -1,0 +1,19 @@
+Mongodb commands to setup database and tables
+
+1. Create Database
+
+        use carrermaker
+
+2. Create Collection
+
+
+        db.createCollection("job_vacancy")
+
+        db add_vacancy.insert(self, title, location, salary, summary):
+        try:
+            rec = {
+                'title': title,
+                'location': location,
+                'salary': salary,
+                'summary': summary
+            }

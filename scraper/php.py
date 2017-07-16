@@ -1,32 +1,38 @@
 import requests
 from bs4 import BeautifulSoup
 from utils import get_request_headers
-from config import *
 from db import Mdb
+from config import *
 
 
-class Scrapper:
+class Php:
     def __init__(self):
-        self.mdb = Mdb(DB_HOST, DB_PORT, AUTH_DB_NAME,
-                       DB_NAME, DB_USER, DB_PASS)
-
-    def scrap_python_developer(self):
-        # scrap python Developer in mohali
-        python_url = "https://www.indeed.co.in/" \
-                     "jobs?q=python+developer&l=Mohali%2C+Punjab"
-
-        self.scrap_developer(python_url)
+        self.mdb = Mdb()
 
     def scrap_result_row(self, div):
+        print "<<=================================>>"
+        ################################
+        #       Company title          #
+        ################################
+        title = ''
+        span = div.find('span', class_='company')
+        if span:
+            title = span.text.strip()
+            print "company title: %s" % title
+        else:
+            print "company title: %s" % span
 
-        title = div.find('span', class_='company').text.strip()
-        print "company title: %s" % title
-
+        ################################
+        #       Company location       #
+        ################################
         span = div.find('span', class_='location')
         location = span.text.strip()
 
         print "company Location: %s" % location
 
+        ################################
+        #       Company salary         #
+        ################################
         salary = ''
         span = div.find('span', class_='no-wrap')
         if span:
@@ -35,6 +41,9 @@ class Scrapper:
         else:
             print "salary: %s" % span
 
+        ################################
+        #       Company summary        #
+        ################################
         span = div.find('span', class_='summary')
         summary = span.text.strip()
 
@@ -42,8 +51,9 @@ class Scrapper:
 
         self.mdb.add_vacancy(title, location, salary, summary)
 
-    def scrap_developer(self, url):
-        print "\nScrapping python Developer: %sdb.mycol.find() \n" % url
+    def scrap_php_developer(self, url):
+
+        print "\nScrapping Php Developer: %s \n" % url
 
         r = requests.get(url, headers=get_request_headers())
 
@@ -65,7 +75,8 @@ class Scrapper:
             if 'row' in cls and 'result' in cls:
                 self.scrap_result_row(div)
                 # break
-
 if __name__ == '__main__':
-    scrapper = Scrapper()
-    scrapper.scrap_python_developer()
+    php = Php()
+
+    # testing for php data scrapping
+    # php.scrap_php_developer()

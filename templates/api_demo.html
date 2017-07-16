@@ -4,6 +4,21 @@
 		<title>Career Marker</title>
 	</head>
 	<body>
+        <h2>Retrieve Data</h2>
+        <h2>Job Category</h2>
+        <form method="post" action="/find_company_data">
+            <TABLE>
+                <tr>
+                    <th>JCompany name</th>
+                    <td><input type="text" name="cname" placeholder="Enter the Company Name"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="save">
+                </tr>
+            </TABLE>
+        </form>
+
+        <!--++++++++++++++++++++++++++++++++++++ Candidate ++++++++++++++++++++++++++++++++++++++++++++-->
 		<h2>Candidate</h2>
         <form method="post" action="/save_candidate">
             <TABLE>
