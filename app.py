@@ -216,7 +216,7 @@ def candidate_login():
             ret['msg'] = 'Login Failed'
             ret['err'] = 1
 
-        LOGIN_TYPE = 'User Login'
+        LOGIN_TYPE = 'Candidate Login'
         email = session['email']
         user_email = email
         mac = get_mac()
@@ -239,7 +239,7 @@ def candidate_login():
 @app.route('/clear')
 def clearsession():
     try:
-        LOGIN_TYPE = 'User Logout'
+        LOGIN_TYPE = 'Candidate Logout'
         sumSessionCounter()
         email = session['email']
         user_email = email
@@ -322,7 +322,7 @@ def add_company():
 
 
 #############################################
-#              LOGIN CANDIDATE              #
+#              LOGIN COMPANY                #
 #############################################
 @app.route('/company/login', methods=['POST'])
 def company_login():
@@ -363,7 +363,7 @@ def company_login():
             ret['msg'] = 'Login Failed'
             ret['err'] = 1
 
-        LOGIN_TYPE = 'User Login'
+        LOGIN_TYPE = 'Company Login'
         email = session['email']
         user_email = email
         mac = get_mac()
@@ -386,7 +386,7 @@ def company_login():
 @app.route('/clear1')
 def clearsession1():
     try:
-        LOGIN_TYPE = 'User Logout'
+        LOGIN_TYPE = 'Company Logout'
         sumSessionCounter()
         email = session['email']
         user_email = email
@@ -420,15 +420,17 @@ def admin():
     return render_template('admin/home.html', **templateData)
 
 
-@app.route('/admin/companies')
+@app.route('/admin/companies', methods=['GET'])
 def admin_companies():
-    templateData = {'title': 'Get companies'}
+    data = mdb.get_companies()
+    templateData = {'title': 'Get companies', 'data': data}
     return render_template('admin/companies.html', **templateData)
 
 
 @app.route('/admin/candidates')
 def admin_candidates():
-    templateData = {'title': 'Get candidates'}
+    data = mdb.get_candidates()
+    templateData = {'title': 'Get candidates', 'data': data}
     return render_template('admin/candidates.html', **templateData)
 
 

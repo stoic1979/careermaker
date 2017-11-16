@@ -9,7 +9,10 @@
 {% block content %}
 
 <p class="important">
-<h1>LIST OF COMPANIES</h1>
+
+{% if session['email'] %}
+
+<center><h4>LIST OF COMPANIES</h4></center></br></br>
         <table class="highlight">
         <thead >
         <tr>
@@ -17,25 +20,30 @@
             <th>WEBSITE</th>
             <th>EMAIL</th>
             <th>ADDRESS</th>
-            <th><EMAIL></EMAIL></th>
+            <th>MOBILE</th>
         </tr>
         </thead>
 
-        {% for company in companies %}
+        {% for d in data %}
 
         <tbody>
         <tr>
-            <b><td  style="text-align: center;">{{ company.name }}</td></b>
-            <b><td  style="text-align: center;">{{ company.website }}</td></b>
-            <b><td  style="text-align: center;">{{ company.email }}</td></b>
-            <b><td  style="text-align: center;">{{ company.name }}</td></b>
-            <b><td  style="text-align: center;">{{ company.name }}</td></b>
+            <b><td  style="text-align: center;">{{ d.name }}</td></b>
+            <b><td  style="text-align: center;">{{ d.website }}</td></b>
+            <b><td  style="text-align: center;">{{ d.email }}</td></b>
+            <b><td  style="text-align: center;">{{ d.address }}</td></b>
+            <b><td  style="text-align: center;">{{ d.mobile }}</td></b>
         </tr>
         </tbody>
 
         {% endfor %}
         </table>
 
+  {% else %}
+  <p style="color: red"> You still didn't set your Email, do it
+      <a href="{{ url_for('admin') }}">here</a></p>
+          {% include 'admin/session.html' %}
+  {% endif %}
 </p>
 
 {% endblock %}

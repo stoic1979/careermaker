@@ -173,7 +173,7 @@ class Mdb:
                 'timestamp': ts
             }
 
-            self.db.company.insert(rec)
+            self.db.company_session.insert(rec)
         except Exception as exp:
             print "save_login_info1() :: Got exception: %s", exp
             print(traceback.format_exc())
@@ -200,6 +200,23 @@ class Mdb:
         return self.db.admin.find({'email': email, 'password': password}).\
                    count() > 0
 
+    def get_companies(self):
+        collection = self.db["company"]
+        # result = collection.find().skip(self.db.survey.count()-1)
+        result = collection.find({})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+
+    def get_candidates(self):
+        collection = self.db["candidate"]
+        # result = collection.find().skip(self.db.survey.count()-1)
+        result = collection.find({})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
 
 if __name__ == "__main__":
     mdb = Mdb()
