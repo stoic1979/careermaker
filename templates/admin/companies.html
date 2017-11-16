@@ -9,8 +9,32 @@
 {% block content %}
 
 <p class="important">
+<h1>LIST OF COMPANIES</h1>
+        <table class="highlight">
+        <thead >
+        <tr>
+            <th>NAME</th>
+            <th>WEBSITE</th>
+            <th>EMAIL</th>
+            <th>ADDRESS</th>
+            <th><EMAIL></EMAIL></th>
+        </tr>
+        </thead>
 
+        {% for company in companies %}
 
+        <tbody>
+        <tr>
+            <b><td  style="text-align: center;">{{ company.name }}</td></b>
+            <b><td  style="text-align: center;">{{ company.website }}</td></b>
+            <b><td  style="text-align: center;">{{ company.email }}</td></b>
+            <b><td  style="text-align: center;">{{ company.name }}</td></b>
+            <b><td  style="text-align: center;">{{ company.name }}</td></b>
+        </tr>
+        </tbody>
+
+        {% endfor %}
+        </table>
 
 </p>
 

@@ -9,7 +9,20 @@
 {% block content %}
 
 <p class="important">
+{% if session['name'] %}Welcome :&emsp;{{session['name']}}
 
+
+
+
+
+
+  {% else %}
+
+    <p style="color: red"> You still didn't set your Email, do it
+        <a href="{{ url_for('candidate') }}">here</a></p>
+
+  {% include 'candidate/session.html' %}
+  {% endif %}
 </p>
 
 {% endblock %}
