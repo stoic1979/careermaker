@@ -1,0 +1,53 @@
+{% extends "admin/base.html" %}
+{% block title %}HOME{% endblock %}
+{% block head %}
+  {{ super() }}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+
+{% if session['email'] %}
+
+<center><h4>ANDROID VACANCIES</h4></center></br></br>
+        <table class="highlight">
+        <thead >
+        <tr>
+            <th>NAME</th>
+            <th>LOCATION</th>
+            <th>DETAILS</th>
+            <th>SALARY</th>
+        </tr>
+        </thead>
+
+        {% for d in data %}
+
+        <tbody>
+        <tr>
+            <b><td  style="text-align: center;">{{ d.title }}</td></b>
+            <b><td  style="text-align: center;">{{ d.location }}</td></b>
+            <b><td  style="text-align: center;">{{ d.summary }}</td></b>
+            <b><td  style="text-align: center;">{{ d.salary }}</td></b>
+        </tr>
+        </tbody>
+
+        {% endfor %}
+        </table>
+
+
+
+
+
+  {% else %}
+  <p style="color: red"> You still didn't set your Email, do it
+      <a href="{{ url_for('admin') }}">here</a></p>
+          {% include 'admin/session.html' %}
+  {% endif %}
+
+
+</p>
+
+{% endblock %}

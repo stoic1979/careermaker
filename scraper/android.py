@@ -10,7 +10,7 @@ class Android:
         self.mdb = Mdb()
 
     def scrap_result_row(self, div):
-        print "<<=================================>>"
+        print "<<=================================ANDROID>>"
         ################################
         #       Company title          #
         ################################

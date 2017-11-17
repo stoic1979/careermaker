@@ -10,7 +10,7 @@ class Python:
         self.mdb = Mdb()
 
     def scrap_result_row(self, div):
-
+        print "<<=================================PHP>>"
         ################################
         #       Company title          #
         ################################

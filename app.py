@@ -119,6 +119,18 @@ def token_required(f):
     return decorated
 
 
+@app.route('/admin1')
+def admin1():
+    templateData = {'title': 'index page'}
+    return render_template('admin1/home.html', **templateData)
+
+
+@app.route('/admin1/index')
+def index():
+    templateData = {'title': 'index page'}
+    return render_template('admin1/index.html', **templateData)
+
+
 ############################################################################
 #                                                                          #
 #                               CANDIDATE PANNEL                           #
@@ -434,10 +446,26 @@ def admin_candidates():
     return render_template('admin/candidates.html', **templateData)
 
 
-@app.route('/admin/jobs')
-def admin_jobs():
-    templateData = {'title': 'index page'}
-    return render_template('admin/jobs.html', **templateData)
+@app.route('/admin/python')
+def admin_python():
+    data = mdb.get_python_jobs()
+    templateData = {'title': 'python page', 'data': data}
+    return render_template('admin/python.html', **templateData)
+
+
+@app.route('/admin/android')
+def admin_android():
+    data = mdb.get_android_jobs()
+    print'--------------------', data
+    templateData = {'title': 'android page', 'data': data}
+    return render_template('admin/android.html', **templateData)
+
+
+@app.route('/admin/php')
+def admin_php():
+    data = mdb.get_php_jobs()
+    templateData = {'title': 'php page', 'data': data}
+    return render_template('admin/php.html', **templateData)
 
 
 #############################################

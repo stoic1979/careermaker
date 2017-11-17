@@ -218,6 +218,34 @@ class Mdb:
             ret.append(data)
         return ret
 
+    def get_python_jobs(self):
+        collection = self.db["job_vacancy_python"]
+        # result = collection.find().skip(self.db.survey.count()-1)
+        result = collection.find({})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+
+    def get_android_jobs(self):
+        collection = self.db["job_vacancy_python"]
+        # result = collection.find().skip(self.db.survey.count()-1)
+        result = collection.find({})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+        # print'==========================',ret
+
+    def get_php_jobs(self):
+        collection = self.db["job_vacancy_android"]
+        # result = collection.find().skip(self.db.survey.count()-1)
+        result = collection.find({})
+        ret = []
+        for data in result:
+            ret.append(data)
+        return ret
+
 if __name__ == "__main__":
     mdb = Mdb()
     mdb.add_admin('john@gmail.com', '123')

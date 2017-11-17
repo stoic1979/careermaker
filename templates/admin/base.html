@@ -23,28 +23,81 @@
 
   <!---------------------------- NAVIGATION BAR BEGINS ---------------------------->
 
-<nav>
+
+  <nav>
     <div class="nav-wrapper">
-        <a href="/admin" class="brand-logo">CAREER MAKER</a>
+      <a href="/admin" class="brand-logo">CAREER MAKER</a>
+
         <a href="#" data-activates="mobile-demo" class="button-collapse">
             <i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
+
+        <ul class="right hide-on-med-and-down">
             <li><a href="/admin/companies">COMPANIES</a></li>
             <li><a href="/admin/candidates">CANDIDATES</a></li>
-            <li><a href="/admin/jobs">JOBS</a></li>
+
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">JOBS
+                <i class="material-icons right">arrow_drop_down</i></a></li>
+
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown2">SETTING
+            <i class="material-icons right">arrow_drop_down</i></a></li>
+
+        </ul>
+
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="/admin/python">Python</a></li>
+            <li><a href="/admin/android">Android</a></li>
+            <li class="divider"></li>
+            <li><a href="/admin/php">Php</a></li>
+        </ul>
+        <ul id="dropdown2" class="dropdown-content">
             {% if session['email'] %}
             <li><a href="{{ url_for('clearsession2') }}">LOGOUT</a></li>
             {% else %}
             <li><a href="/admin">SIGN IN</a></li>{% endif %}
+
         </ul>
     </div>
-</nav>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" href="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
-  <script>
+
+    <div class="nav-wrapper">
+        <ul class="side-nav" id="mobile-demo">
+            <li><a href="/admin/companies">COMPANIES</a></li>
+            <li><a href="/admin/candidates">CANDIDATES</a></li>
+
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown3">JOBS
+                <i class="material-icons right">arrow_drop_down</i></a></li>
+
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown4">SETTING
+            <i class="material-icons right">arrow_drop_down</i></a></li>
+
+        </ul>
+        <ul id="dropdown3" class="dropdown-content">
+            <li><a href="/admin/python">Python</a></li>
+            <li><a href="/admin/android">Android</a></li>
+            <li class="divider"></li>
+            <li><a href="/admin/php">Php</a></li>
+        </ul>
+
+        <ul id="dropdown4" class="dropdown-content">
+            {% if session['email'] %}
+            <li><a href="{{ url_for('clearsession2') }}">LOGOUT</a></li>
+            {% else %}
+            <li><a href="/admin">SIGN IN</a></li>{% endif %}
+
+        </ul>
+    </div>
+  </nav>
+
+
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+ <script>
         $(".button-collapse").sideNav();
-      </script>
+        $(".dropdown-button").dropdown();
+ </script>
   <!----------------------------- NAVIGATION BAR ENDS ----------------------------->
 
                    {% block content %}{% endblock %}
