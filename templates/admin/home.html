@@ -1,23 +1,24 @@
+
 {% extends "admin/admin_base.html" %}
 {% block title %}HOME{% endblock %}
 {% block head %}
   {{ super() }}
 
-<!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
 {% endblock %}
 {% block content %}
 
 <p class="important">
 
-{% if session['email'] %}Welcome :&emsp;{{session['email']}}
+{% if session['email'] %}
 
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
   <!-- Header -->
-  <header class="w3-container" style="padding-top:22px">
+  <header class="w3-container" style="padding-top:0px">
     <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
   </header>
 
@@ -63,38 +64,8 @@
       </div>
     </div>
   </div>
-
-
-  <div class="w3-container">
-    <h5>Countries</h5>
-    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      <tr>
-        <td>United States</td>
-        <td>65%</td>
-      </tr>
-      <tr>
-        <td>UK</td>
-        <td>15.7%</td>
-      </tr>
-      <tr>
-        <td>Russia</td>
-        <td>5.6%</td>
-      </tr>
-      <tr>
-        <td>Spain</td>
-        <td>2.1%</td>
-      </tr>
-      <tr>
-        <td>India</td>
-        <td>1.9%</td>
-      </tr>
-      <tr>
-        <td>France</td>
-        <td>1.5%</td>
-      </tr>
-    </table><br>
-
 </div>
+
 
 
   {% else %}

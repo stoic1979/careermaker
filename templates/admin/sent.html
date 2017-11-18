@@ -19,8 +19,8 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
 <!-- Side Navigation -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar1">
-  <a href="javascript:void(0)" onclick="w3_close1()" title="Close Sidemenu"
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
   class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" onclick="document.getElementById('id01').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
   <a href="/admin/inbox" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox</a>
@@ -58,7 +58,7 @@
 </div>
 
 <!-- Overlay effect when opening the side navigation on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close1()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay1"></div>
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
 
 <!-- Page content -->
 <div class="w3-main" style="margin-left:320px;">
@@ -83,40 +83,14 @@ var openInbox = document.getElementById("myBtn");
 openInbox.click();
 
 function w3_open() {
-    document.getElementById("mySidebar1").style.display = "block";
-    document.getElementById("myOverlay1").style.display = "block";
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
 }
-function w3_close1() {
-    document.getElementById("mySidebar1").style.display = "none";
-    document.getElementById("myOverlay1").style.display = "none";
-}
-
-function myFunc(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-blue";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-        x.previousElementSibling.className =
-        x.previousElementSibling.className.replace(" w3-blue", "w3-blue");
-    }
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
 }
 
-openMail("Borge")
-function openMail(personName) {
-    var i;
-    var x = document.getElementsByClassName("person");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    x = document.getElementsByClassName("test");
-    for (i = 0; i < x.length; i++) {
-       x[i].className = x[i].className.replace(" w3-light-grey", "");
-    }
-    document.getElementById(personName).style.display = "block";
-    event.currentTarget.className += " w3-light-grey";
-}
 </script>
 
 <script>

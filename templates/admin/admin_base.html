@@ -54,9 +54,14 @@
     <a href="/admin/python" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Python Jobs</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Php Jobs</a>
   </br></br></br></br>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-setting"></i>  SETTING</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-key"></i>  Login</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off"></i>  Logout</a><br><br>
+    <a  class="w3-bar-item w3-button w3-padding"><i class="fa fa-setting"></i>  SETTING</a>
+    {% if session['email'] %}
+
+    <a href="{{ url_for('clearsession2') }}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off"></i>  Logout</a>
+    {% else %}
+    <a href="/admin" class="w3-bar-item w3-button w3-padding"><i class="fa fa-key"></i>  Login</a><br><br>
+    {% endif %}
+
   </div>
 </nav>
 <!-- Overlay effect when opening sidebar on small screens -->
