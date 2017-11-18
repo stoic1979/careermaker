@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "admin/admin_base.html" %}
 {% block title %}HOME{% endblock %}
 {% block head %}
   {{ super() }}
@@ -12,17 +12,24 @@
 
 {% if session['email'] %}
 
-<center><h4>PYTHON VACANCIES</h4></center></br></br>
-        <table class="highlight">
-        <thead >
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:0px">
+    <h5><b><i class="fa fa-dashboard"></i>PYTHON VACANCIES</b></h5>
+  </header>
+
+  <div class="w3-container">
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                <thead >
         <tr>
-            <th>NAME</th>
-            <th>LOCATION</th>
-            <th>DETAILS</th>
-            <th>SALARY</th>
+            <th style="text-align: center;">NAME</th>
+            <th style="text-align: center;">LOCATION</th>
+            <th style="text-align: center;">DETAILS</th>
+            <th style="text-align: center;">SALARY</th>
         </tr>
         </thead>
-
         {% for d in data %}
 
         <tbody>
@@ -33,9 +40,9 @@
             <b><td  style="text-align: center;">{{ d.salary }}</td></b>
         </tr>
         </tbody>
-
-        {% endfor %}
-        </table>
+{% endfor %}
+    </table></br>
+  </div>
 
   {% else %}
   <p style="color: red"> You still didn't set your Email, do it

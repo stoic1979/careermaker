@@ -468,6 +468,36 @@ def admin_php():
     return render_template('admin/php.html', **templateData)
 
 
+@app.route('/admin/email')
+def admin_email():
+    templateData = {'title': 'email page'}
+    return render_template('admin/email.html', **templateData)
+
+
+@app.route('/admin/inbox')
+def admin_inbox():
+    templateData = {'title': 'inbox page'}
+    return render_template('admin/inbox.html', **templateData)
+
+
+@app.route('/admin/sent')
+def admin_sent():
+    templateData = {'title': 'send page'}
+    return render_template('admin/sent.html', **templateData)
+
+
+@app.route('/admin/draft')
+def admin_draft():
+    templateData = {'title': 'draft page'}
+    return render_template('admin/draft.html', **templateData)
+
+
+@app.route('/admin/trash')
+def admin_trash():
+    templateData = {'title': 'trash page'}
+    return render_template('admin/trash.html', **templateData)
+
+
 #############################################
 #                 LOGIN ADMIN               #
 #############################################

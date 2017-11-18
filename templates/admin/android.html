@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "admin/admin_base.html" %}
 {% block title %}HOME{% endblock %}
 {% block head %}
   {{ super() }}
@@ -11,10 +11,19 @@
 <p class="important">
 
 {% if session['email'] %}
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-<center><h4>ANDROID VACANCIES</h4></center></br></br>
-        <table class="highlight">
-        <thead >
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:0px">
+    <h5><b><i class="fa fa-dashboard"></i> ANDROID VACANCIES</b></h5>
+  </header>
+
+
+
+  <div class="w3-container">
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white" style="background-color:#FFFFE0;">
+                <thead >
         <tr>
             <th>NAME</th>
             <th>LOCATION</th>
@@ -22,7 +31,6 @@
             <th>SALARY</th>
         </tr>
         </thead>
-
         {% for d in data %}
 
         <tbody>
@@ -33,12 +41,10 @@
             <b><td  style="text-align: center;">{{ d.salary }}</td></b>
         </tr>
         </tbody>
+{% endfor %}
+    </table><br>
 
-        {% endfor %}
-        </table>
-
-
-
+</div>
 
 
   {% else %}
