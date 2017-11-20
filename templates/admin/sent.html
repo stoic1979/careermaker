@@ -22,7 +22,8 @@
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
   class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" onclick="document.getElementById('id01').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align"
+     onclick="document.getElementById('id01').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
   <a href="/admin/inbox" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Inbox</a>
   <a href="/admin/sent" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Sent</a>
   <a href="/admin/draft" class="w3-bar-item w3-button"><i class="fa fa-hourglass-end w3-margin-right"></i>Drafts</a>
@@ -104,7 +105,6 @@ openTab.click();
   {% else %}
   <p style="color: red"> You still didn't set your Email, do it
       <a href="{{ url_for('admin') }}">here</a></p>
-          {% include 'admin/session.html' %}
   {% endif %}
 </p>
 

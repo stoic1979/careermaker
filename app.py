@@ -113,6 +113,11 @@ def token_required(f):
             data = jwt.decode(token, app.config['secretkey'])
         except:
             return jsonify({'message': 'Invalid token!'})
+############################################################################
+#                                                                          #
+#            CHECK EMAIL USER ALREADY REGISTERED OR NOT                    #
+#                                                                          #
+############################################################################
 
         return f(*args, **kwargs)
 
@@ -131,9 +136,18 @@ def index():
     return render_template('admin1/index.html', **templateData)
 
 
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                         CANDIDATE PANNEL                                                #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 ############################################################################
 #                                                                          #
-#                               CANDIDATE PANNEL                           #
+#                              CANDIDATE ROUTE                             #
 #                                                                          #
 ############################################################################
 @app.route('/candidate')
@@ -143,15 +157,23 @@ def candidate():
     return render_template('candidate/home.html', session=session, **templateData)
 
 
+############################################################################
+#                                                                          #
+#                              CANDIDATE SIGNUP                            #
+#                                                                          #
+############################################################################
 @app.route('/candidate/signup')
 def candidate_signup():
     templateData = {'title': 'Signup page'}
     return render_template('candidate/signup.html', session=session, **templateData)
 
 
-#############################################
-#               ADD CANDIDATE               #
-#############################################
+############################################################################
+#                                                                          #
+#          CHECK CANDIDATE ALREADY REGISTERED OR NOT THEN REGISTER         #
+#                            PASSWORD BCRYBY                               #
+#                                                                          #
+############################################################################
 @app.route('/candidate/add_candidate', methods=['POST'])
 def add_candidate():
     try:
@@ -163,7 +185,7 @@ def add_candidate():
         phone = request.form['phone']
         address = request.form['address']
         gender = request.form['gender']
-        print'----------------', request.form
+        # print'----------------', request.form
 
         # password bcrypt  #
         pw_hash = bcrypt.generate_password_hash(password)
@@ -186,9 +208,13 @@ def add_candidate():
         print(traceback.format_exc())
 
 
-#############################################
-#              LOGIN CANDIDATE              #
-#############################################
+############################################################################
+#                                                                          #
+#                              CANDIDATE LOGIN                             #
+#        STORED INFORMATION[SESSION_ID, MAC_ADDRESS, IP OR BROWSER]        #
+#     SEESION TIME 30 MIN (SEESION LOGOUT AUTOMATICALLY AFTER 30 MINs      #
+#                                                                          #
+############################################################################
 @app.route('/candidate/login', methods=['POST'])
 def candidate_login():
     ret = {'err': 0}
@@ -245,9 +271,12 @@ def candidate_login():
     return render_template('candidate/home.html', session=session)
 
 
-#############################################
-#        CANDIDATE SESSION LOGOUT           #
-#############################################
+############################################################################
+#                                                                          #
+#                       CANDIDATE SESSION LOGOUT                           #
+#     STOREED CANDIDATES INFORMATION WHEN CANDIDATE LOGOUT ALL DEATAILS.   #
+#                                                                          #
+############################################################################
 @app.route('/clear')
 def clearsession():
     try:
@@ -264,19 +293,19 @@ def clearsession():
     except Exception as exp:
         return 'clearsession() :: Got Exception: %s' % exp
 
-#
-# #############################################
-# #                   Error 404               #
-# #############################################
-# @app.errorhandler(404)
-# def page_not_found(error):
-#     app.logger.error('Page not found: %s', (request.path))
-#     return render_template('admin/404.html'), 404
-#
 
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                         CANDIDATE PANNEL                                                #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 ############################################################################
 #                                                                          #
-#                               COMPANY PANNEL                             #
+#                               COMPANY ROUTE                              #
 #                                                                          #
 ############################################################################
 @app.route('/company')
@@ -284,16 +313,23 @@ def company():
     templateData = {'title': 'Home page'}
     return render_template('company/home.html', **templateData)
 
-
+############################################################################
+#                                                                          #
+#                         COMPANY SIGNUP ROUTE                             #
+#                                                                          #
+############################################################################
 @app.route('/company/signup')
 def company_signup():
     templateData = {'title': 'Signup page'}
     return render_template('company/signup.html', session=session, **templateData)
 
 
-#############################################
-#                ADD COMAPANY               #
-#############################################
+############################################################################
+#                                                                          #
+#           CHECK COMPANY ALREADY REGISTERED OR NOT THEN REGISTER          #
+#                            PASSWORD BCRYBY                               #
+#                                                                          #
+############################################################################
 @app.route('/company/add_company', methods=['POST'])
 def add_company():
     try:
@@ -333,9 +369,13 @@ def add_company():
         print(traceback.format_exc())
 
 
-#############################################
-#              LOGIN COMPANY                #
-#############################################
+############################################################################
+#                                                                          #
+#                              COMPANY LOGIN                               #
+#        STORED INFORMATION[SESSION_ID, MAC_ADDRESS, IP OR BROWSER]        #
+#     SEESION TIME 30 MIN (SEESION LOGOUT AUTOMATICALLY AFTER 30 MINs      #
+#                                                                          #
+############################################################################
 @app.route('/company/login', methods=['POST'])
 def company_login():
     ret = {'err': 0}
@@ -392,9 +432,12 @@ def company_login():
     return render_template('company/home.html', session=session)
 
 
-#############################################
-#        CANDIDATE SESSION LOGOUT           #
-#############################################
+############################################################################
+#                                                                          #
+#                       CANDIDATE SESSION LOGOUT                           #
+#     STOREED CANDIDATES INFORMATION WHEN CANDIDATE LOGOUT ALL DEATAILS.   #
+#                                                                          #
+############################################################################
 @app.route('/clear1')
 def clearsession1():
     try:
@@ -412,26 +455,31 @@ def clearsession1():
         return 'clearsession() :: Got Exception: %s' % exp
 
 
-# #############################################
-# #                   Error 404               #
-# #############################################
-# @app.errorhandler(404)
-# def page_not_found(error):
-#     app.logger.error('Page not found: %s', (request.path))
-#     return render_template('admin/404.html'), 404
-
-
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                             ADMIN PANNEL                                                #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 ##############################################################################
 #                                                                            #
-#                                    ADMIN PANNEL                            #
+#                                    ADMIN ROUTE                             #
 #                                                                            #
 ##############################################################################
 @app.route('/admin')
 def admin():
     templateData = {'title': 'index page'}
-    return render_template('admin/home.html', **templateData)
+    return render_template('admin/login.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                        GET ALL COMPANIES DETAILS                           #
+#                                                                            #
+##############################################################################
 @app.route('/admin/companies', methods=['GET'])
 def admin_companies():
     data = mdb.get_companies()
@@ -439,6 +487,11 @@ def admin_companies():
     return render_template('admin/companies.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                        GET ALL CANDIDATES DETAILS                          #
+#                                                                            #
+##############################################################################
 @app.route('/admin/candidates')
 def admin_candidates():
     data = mdb.get_candidates()
@@ -446,6 +499,11 @@ def admin_candidates():
     return render_template('admin/candidates.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                         GET ALL PYTHON VACANCIES                           #
+#                                                                            #
+##############################################################################
 @app.route('/admin/python')
 def admin_python():
     data = mdb.get_python_jobs()
@@ -453,14 +511,24 @@ def admin_python():
     return render_template('admin/python.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                         GET ALL ANDROID VACANCIES                          #
+#                                                                            #
+##############################################################################
 @app.route('/admin/android')
 def admin_android():
     data = mdb.get_android_jobs()
-    print'--------------------', data
+    # print'--------------------', data
     templateData = {'title': 'android page', 'data': data}
     return render_template('admin/android.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                            GET ALL PHP VACANCIES                           #
+#                                                                            #
+##############################################################################
 @app.route('/admin/php')
 def admin_php():
     data = mdb.get_php_jobs()
@@ -468,39 +536,66 @@ def admin_php():
     return render_template('admin/php.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                       EMAIL ROUTE SHOW LIST OF INBOX EMAIL                 #
+#                                                                            #
+##############################################################################
 @app.route('/admin/email')
 def admin_email():
     templateData = {'title': 'email page'}
     return render_template('admin/email.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                         SHOW LIST OF INBOX EMAIL                           #
+#                                                                            #
+##############################################################################
 @app.route('/admin/inbox')
 def admin_inbox():
     templateData = {'title': 'inbox page'}
     return render_template('admin/inbox.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                            SHOW LIST OF SEND BOX                           #
+#                                                                            #
+##############################################################################
 @app.route('/admin/sent')
 def admin_sent():
     templateData = {'title': 'send page'}
     return render_template('admin/sent.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                            SHOW LIST OF DRAFT BOX                          #
+#                                                                            #
+##############################################################################
 @app.route('/admin/draft')
 def admin_draft():
     templateData = {'title': 'draft page'}
     return render_template('admin/draft.html', **templateData)
 
 
+##############################################################################
+#                                                                            #
+#                            SHOW LIST OF TRASH BOX                          #
+#                                                                            #
+##############################################################################
 @app.route('/admin/trash')
 def admin_trash():
     templateData = {'title': 'trash page'}
     return render_template('admin/trash.html', **templateData)
 
 
-#############################################
-#                 LOGIN ADMIN               #
-#############################################
+##############################################################################
+#                                                                            #
+#                                   ADMIN LOGIN                              #
+#                                                                            #
+##############################################################################
 @app.route('/admin/admin_login', methods=['POST'])
 def admin_login():
     ret = {'err': 0}
@@ -525,7 +620,7 @@ def admin_login():
         else:
             templateData = {'title': 'singin page'}
             # Login Failed!
-            return render_template('/admin/home.html', session=session)
+            return render_template('/admin/login.html', session=session)
             # return "Login faild"
             ret['msg'] = 'Login Failed'
             ret['err'] = 1
@@ -535,33 +630,40 @@ def admin_login():
         ret['err'] = 1
         print(traceback.format_exc())
         # return jsonify(ret)
-        return render_template('admin/home.html', session=session)
+        # return render_template('admin/home.html', session=session)
 
 
-#############################################
-#           ADMIN SESSION LOGOUT            #
-#############################################
+##############################################################################
+#                                                                            #
+#                              ADMIN SESSION LOGOUT                          #
+#                                                                            #
+##############################################################################
 @app.route('/clear2')
 def clearsession2():
     session.clear()
-    return render_template('/admin/home.html', session=session)
+    return render_template('/admin/login.html', session=session)
 
 
-# #############################################
-# #                  GET USER                 #
-# #############################################
-# @app.route("/admin/get_users", methods=['GET'])
-# def get_users():
-#     users = mdb.get_users()
-#     templateData = {'title': 'Users', 'users': users}
-#     return render_template('admin/get_users.html', session=session, **templateData)
+##############################################################################
+#                                                                            #
+#                    HADDLE THE ERROR AND SHOW THE 404 PAGE                  #
+#                                                                            #
+##############################################################################
+@app.errorhandler(404)
+def page_not_found(error):
+    app.logger.error('Page not found: %s', (request.path))
+    return render_template('admin/404.html'), 404
 
 
-#############################################
-#                                           #
-#                  MAIN SERVER              #
-#                                           #
-#############################################
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                              MAIN SERVER                                                #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True, threaded=True)

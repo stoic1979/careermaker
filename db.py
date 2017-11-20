@@ -19,16 +19,29 @@ class Mdb:
 
         print "[Mdb] connected to database :: ", self.db
 
+
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                         CANDIDATE PANNEL                                                #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 ############################################################################
 #                                                                          #
-#                               CANDIDATE PANNEL                           #
+#            CHECK EMAIL USER ALREADY REGISTERED OR NOT                    #
 #                                                                          #
 ############################################################################
-    # CHECK EMAIL USER ALREADY REGISTERED OR NOT
     def check_email(self, email):
         return self.db.candidate.find({'email': email}).count() > 0
 
-    # REGITRATION CANDIDATE IN DATABASE
+############################################################################
+#                                                                          #
+#                       REGITRATION CANDIDATE IN DATABASE                  #
+#                                                                          #
+############################################################################
     def add_candidate(self, user_id, name, email, pw_hash, age, phone, address, gender):
         try:
             rec = {
@@ -47,11 +60,19 @@ class Mdb:
             print "add_candidate() :: Got exception: %s", exp
             print(traceback.format_exc())
 
-    # CHECK EMAIL EXIST OR NOT IN DATABASE BEFORE LOGIN CANDIDATE
+############################################################################
+#                                                                          #
+#        CHECK EMAIL EXIST OR NOT IN DATABASE BEFORE LOGIN CANDIDATE       #
+#                                                                          #
+############################################################################
     def user_exists(self, email):
         return self.db.candidate.find({'email': email}).count() > 0
 
-    # MATCH PASSWORD AND EMAIL THEN LOGIN
+############################################################################
+#                                                                          #
+#                   MATCH PASSWORD AND EMAIL THEN LOGIN                    #
+#                                                                          #
+############################################################################
     def get_password(self, email):
         result = self.db.candidate.find({'email': email})
         name = ''
@@ -63,7 +84,11 @@ class Mdb:
                 print 'password in db class', password
         return password
 
-    # GET NAME AND EMAILID VIA EMAIL ADDRESS
+############################################################################
+#                                                                          #
+#                GET NAME AND EMAILID VIA EMAIL ADDRESS                    #
+#                                                                          #
+############################################################################
     def get_name(self, email):
         result = self.db.candidate.find({'email': email})
         name = ''
@@ -74,12 +99,14 @@ class Mdb:
                 email = data['email']
         return name
 
-    # CANDIDATE SESSION INFORMATION
+############################################################################
+#                                                                          #
+#                        CANDIDATE SESSION INFORMATION                     #
+#                                                                          #
+############################################################################
     def save_login_info(self, user_email, mac, ip, user_agent, type):
         LOGIN_TYPE = 'User Login'
         try:
-            # ts = datetime.datetime.utcnow()
-            # ts = datetime.datetime.now().strftime("%d-%m-%G  %H:%M:%S")
             ts = datetime.datetime.today().strftime("%a %b %d %X  %Y ")
 
             rec = {
@@ -97,16 +124,28 @@ class Mdb:
             print(traceback.format_exc())
 
 
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                         COMPANY PANNEL                                                  #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 ############################################################################
 #                                                                          #
-#                               COMPANY PANNEL                             #
+#              CHECK EMAIL USER ALREADY REGISTERED OR NOT                  #
 #                                                                          #
 ############################################################################
-    # CHECK EMAIL USER ALREADY REGISTERED OR NOT
     def check_company_email(self, email):
         return self.db.company.find({'email': email}).count() > 0
 
-    # REGITRATION CANDIDATE IN DATABASE
+############################################################################
+#                                                                          #
+#                      REGITRATION CANDIDATE IN DATABASE                   #
+#                                                                          #
+############################################################################
     def add_company(self, user_id, name, website, email, pw_hash, mobile, telno, address, city, state, country, pin):
         try:
             rec = {
@@ -129,11 +168,19 @@ class Mdb:
             print "add_company() :: Got exception: %s", exp
             print(traceback.format_exc())
 
-  # CHECK EMAIL EXIST OR NOT IN DATABASE BEFORE LOGIN CANDIDATE
+############################################################################
+#                                                                          #
+#      CHECK EMAIL EXIST OR NOT IN DATABASE BEFORE LOGIN CANDIDATE         #
+#                                                                          #
+############################################################################
     def user_exists1(self, email):
         return self.db.company.find({'email': email}).count() > 0
 
-    # MATCH PASSWORD AND EMAIL THEN LOGIN
+############################################################################
+#                                                                          #
+#                    MATCH PASSWORD AND EMAIL THEN LOGIN                   #
+#                                                                          #
+############################################################################
     def get_password1(self, email):
         result = self.db.company.find({'email': email})
         name = ''
@@ -145,7 +192,11 @@ class Mdb:
                 print 'password in db class', password
         return password
 
-    # GET NAME AND EMAILID VIA EMAIL ADDRESS
+############################################################################
+#                                                                          #
+#                   GET NAME AND EMAILID VIA EMAIL ADDRESS                 #
+#                                                                          #
+############################################################################
     def get_name1(self, email):
         result = self.db.company.find({'email': email})
         name = ''
@@ -156,12 +207,14 @@ class Mdb:
                 email = data['email']
         return name
 
-    # CANDIDATE SESSION INFORMATION
+############################################################################
+#                                                                          #
+#                       CANDIDATE SESSION INFORMATION                      #
+#                                                                          #
+############################################################################
     def save_login_info1(self, user_email, mac, ip, user_agent, type):
         LOGIN_TYPE = 'User Login'
         try:
-            # ts = datetime.datetime.utcnow()
-            # ts = datetime.datetime.now().strftime("%d-%m-%G  %H:%M:%S")
             ts = datetime.datetime.today().strftime("%a %b %d %X  %Y ")
 
             rec = {
@@ -178,9 +231,19 @@ class Mdb:
             print "save_login_info1() :: Got exception: %s", exp
             print(traceback.format_exc())
 
+
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                          ADMIN PANNEL                                                   #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 ############################################################################
 #                                                                          #
-#                               ADMIN PANNEL                               #
+#                      ADD ADMIN IN DATABASE BY HARD CODE                  #
 #                                                                          #
 ############################################################################
     def add_admin(self, email, password):
@@ -194,58 +257,91 @@ class Mdb:
             print "add_admin() :: Got exception: %s", exp
             print(traceback.format_exc())
 
-
+############################################################################
+#                                                                          #
+#       CHECK EMAIL EXIST OR NOT IN DATABASE BEFORE LOGIN CANDIDATE        #
+#                                                                          #
+############################################################################
     def admin_exists(self, email, password):
 
         return self.db.admin.find({'email': email, 'password': password}).\
                    count() > 0
 
+############################################################################
+#                                                                          #
+#              GET COMPANIES DETAILS FROM COMPANY COLLECTION               #
+#                                                                          #
+############################################################################
     def get_companies(self):
         collection = self.db["company"]
-        # result = collection.find().skip(self.db.survey.count()-1)
         result = collection.find({})
         ret = []
         for data in result:
             ret.append(data)
         return ret
 
+############################################################################
+#                                                                          #
+#                 GET CANDIDATES DATA FROM COMPANY COLLECTION              #
+#                                                                          #
+############################################################################
     def get_candidates(self):
         collection = self.db["candidate"]
-        # result = collection.find().skip(self.db.survey.count()-1)
         result = collection.find({})
         ret = []
         for data in result:
             ret.append(data)
         return ret
 
+############################################################################
+#                                                                          #
+#                  GET PYTHON VACANCIESM FROM DATABASE                     #
+#                                                                          #
+############################################################################
     def get_python_jobs(self):
         collection = self.db["job_vacancy_python"]
-        # result = collection.find().skip(self.db.survey.count()-1)
         result = collection.find({})
         ret = []
         for data in result:
             ret.append(data)
         return ret
 
+############################################################################
+#                                                                          #
+#                  GET ANDROID VACANCIESM FROM DATABASE                    #
+#                                                                          #
+############################################################################
     def get_android_jobs(self):
         collection = self.db["job_vacancy_python"]
-        # result = collection.find().skip(self.db.survey.count()-1)
         result = collection.find({})
         ret = []
         for data in result:
             ret.append(data)
         return ret
-        # print'==========================',ret
 
+############################################################################
+#                                                                          #
+#                    GET PHP VACANCIESM FROM DATABASE                      #
+#                                                                          #
+############################################################################
     def get_php_jobs(self):
         collection = self.db["job_vacancy_android"]
-        # result = collection.find().skip(self.db.survey.count()-1)
         result = collection.find({})
         ret = []
         for data in result:
             ret.append(data)
         return ret
 
+
+###########################################################################################################
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+#                                                  MAIN                                                   #
+#                                                                                                         #
+#                                                                                                         #
+#                                                                                                         #
+###########################################################################################################
 if __name__ == "__main__":
     mdb = Mdb()
     mdb.add_admin('john@gmail.com', '123')

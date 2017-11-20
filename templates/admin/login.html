@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../images.jpg">
+    <link rel="icon" href="{{ url_for('static', filename='img/images.jpg') }}">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>CARRER MAKERS!</title>
 
@@ -15,57 +14,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- My CSS -->
     <link rel="stylesheet" href="css/style.css">
-<style>
- body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
 
-  main {
-    flex: 1 0 auto;
-  }
-.brand-logo >img {
-	width: 50px;
-	height: 50px;
-	margin-top: 5px;
-}
-/* Menu - profile */
-.bg-card-user {
-	background: rgba(0,77,64,.5);
-	padding: 15px 0;
-}
-.truncate >img {
-	width: 180px;
-	margin-top: 6px;
-	margin-bottom: 6px;
-}
-/* FOOTER */
-footer .foot-text {
-	margin-top: 10px;
-}
+  <style>
+  body { display: flex; min-height: 100vh; flex-direction: column;}
 
-/* LOGIN */
-.logueo {/* PARALLAX */
-    height: 650px!important;
-}
-i.iconis {
-    font-size: 1em!important;
-    margin-top: 8px;
-}
-.login {
-    border: 1px solid #FFF;
-    width: 80%;
-    margin: 0 auto;
-    background-color: rgba(255,255,255,.7);
-    padding: 20px;
-}
-</style>
+  main { flex: 1 0 auto;}
+
+  .brand-logo >img { width: 50px; height: 50px; margin-top: 5px; }
+
+  /* Menu - profile */
+
+  .bg-card-user { background: rgba(0,77,64,.5); padding: 15px 0; }
+  .truncate >img { width: 180px; margin-top: 6px; margin-bottom: 6px; }
+
+  /* FOOTER */
+
+  footer .foot-text { margin-top: 10px; }
+
+  /* LOGIN */
+
+ .logueo {/* PARALLAX */
+    height: 650px!important;}
+
+  i.iconis { font-size: 1em!important; margin-top: 8px; }
+
+  .login { border: 1px solid #FFF; width: 80%; margin: 0 auto; background-color: rgba(255,255,255,.7);
+    padding: 20px; }
+  </style>
 
   </head>
+
   <body>
-<script>
-	$(document).ready(function(){
+	<script>
+		$(document).ready(function(){
     		$('.button-collapse').sideNav({
 		      menuWidth: 300, // Default is 300
 		      edge: 'left', // Choose the horizontal origin
@@ -77,38 +58,37 @@ i.iconis {
 		  );
       		$('.parallax').parallax();
     	});
-</script>
+	</script>
+
 	<nav class="grey darken-4">
 	    <div class="nav-wrapper">
 		    <ul class="right hide-on-med-and-down">
 		        <li><a href="#">ADMIN</a></li>
 		    </ul>
-
 	    </div>
   	</nav>
 
 	<div class="had-container">
-
 	     <div class="parallax-container logueo">
-      	<div class="parallax"><img src="https://alistapart.com/d/438/fig-6--background-blend-mode.jpg"></div>
       	<div class="row"><br>
       		<div class="col m8 s8 offset-m2 offset-s2 center">
       			<h4 class="truncate bg-card-user">
-      				<img src="../images.jpg" alt="" class="circle responsive-img">
+      				<img src="{{ url_for('static', filename='img/images.jpg') }}" alt="" class="circle responsive-img">
 					  <div class="row login">
 					  	<h4>ADMIN LOGIN</h4>
-					    <form class="col s12">
+
+					    <form class="col s12" action="/admin/admin_login" method="post">
 					      <div class="row">
 					         <div class="input-field col m12 s12">
 					          <i class="material-icons iconis prefix">account_box</i>
-					          <input id="icon_prefix" type="text" class="validate">
+					          <input id="icon_prefix" type="email" class="validate" name="email"  required autofocus >
 					          <label for="icon_prefix">Admin Email</label>
 					        </div>
 					      </div>
 					      <div class="row">
 					        <div class="input-field col m12 s12">
 					          <i class="material-icons iconis prefix">enhanced_encryption</i>
-					          <input id="password" type="password" class="validate">
+					          <input id="password" type="password" class="validate" name="password"  required autofocus >
 					          <label for="password">Password</label>
 					        </div>
 					      </div>
@@ -122,7 +102,7 @@ i.iconis {
 	    	</div>
 	    </div>
     </div>
-
+    
 
     </div> <!-- fin del .container -->
 
